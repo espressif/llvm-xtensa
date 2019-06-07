@@ -613,8 +613,8 @@ let isCall = 1,
   }
 }
 
-let isReturn = 1, isTerminator = 1, isCodeGenOnly = 1,
-    isBarrier = 1, hasCtrlDep = 1, Uses = [a0], Predicates = [HasWindowed] in
+let isReturn = 1, isTerminator = 1,
+    isBarrier = 1, hasCtrlDep = 1, Uses = [a0], Predicates = [HasDensity] in
 {
 
   def RET_N: RRRN_Inst<0x0D, (outs), (ins),
@@ -624,9 +624,9 @@ let isReturn = 1, isTerminator = 1, isCodeGenOnly = 1,
     let s = 0;
     let t = 0;
   } 
-  
+
   def RETW_N: RRRN_Inst<0x0D, (outs), (ins),
-                "retw.n", []>
+                "retw.n", [(Xtensa_retWflag)]>, Requires<[HasWindowed]>
   {
     let r = 0x0F;
     let s = 0;
